@@ -1,0 +1,213 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  STUDENT
+  TEACHER
+  ADMIN
+}
+
+enum QuestionType {
+  MCQ
+  TRUE_FALSE
+  SHORT_ANSWER
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum MaterialType {
+  SUMMARY
+  DEFINITION
+  FORMULA
+  EXAMPLE
+  STUDY_NOTE
+}
+
+enum AttemptMode {
+  PRACTICE
+  EXAM
+}
+
+enum AttemptStatus {
+  IN_PROGRESS
+  SUBMITTED
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  avatarUrl    String?
+  passwordHash String?
+  googleId     String?  @unique
+  role         Role     @default(STUDENT)
+  createdAt    DateTime @default(now())
+  profile      StudentProfile?
+  attempts     Attempt[]
+
+  @@map("users")
+}
+
+model StudentProfile {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  grade     Int      @default(10)
+  school    String?
+  createdAt DateTime @default(now())
+
+  @@map("student_profiles")
+}
+
+model Grade {
+  id       Int       @id
+  name     String
+  subjects Subject[]
+  exams    Exam[]
+
+  @@map("grades")
+}
+
+model Subject {
+  id        String        @id @default(cuid())
+  gradeId   Int
+  grade     Grade         @relation(fields: [gradeId], references: [id], onDelete: Cascade)
+  code      String
+  name      String
+  color     String        @default("#4f46e5")
+  topics    Topic[]
+  exams     Exam[]
+  createdAt DateTime      @default(now())
+
+  @@unique([gradeId, code])
+  @@map("subjects")
+}
+
+model Topic {
+  id          String          @id @default(cuid())
+  subjectId   String
+  subject     Subject         @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  name        String
+  description String?
+  order       Int             @default(0)
+  materials   StudyMaterial[]
+  questions   Question[]
+
+  @@map("topics")
+}
+
+model StudyMaterial {
+  id        String       @id @default(cuid())
+  topicId   String
+  topic     Topic        @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  type      MaterialType
+  title     String
+  content   String
+  order     Int          @default(0)
+
+  @@map("study_materials")
+}
+
+model Question {
+  id             String          @id @default(cuid())
+  topicId        String
+  topic          Topic           @relation(fields: [topicId], references: [id], onDelete: Cascade)
+  type           QuestionType
+  difficulty     Difficulty      @default(MEDIUM)
+  text           String
+  explanation    String?
+  points         Int             @default(2)
+  answers        Answer[]
+  examEntries    ExamQuestion[]
+  attemptAnswers AttemptAnswer[]
+
+  @@map("questions")
+}
+
+model Answer {
+  id           String   @id @default(cuid())
+  questionId   String
+  question     Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  text         String
+  isCorrect    Boolean  @default(false)
+  order        Int      @default(0)
+  keywords     String[] @default([])
+  alternatives String[] @default([])
+
+  @@map("answers")
+}
+
+model Exam {
+  id              String         @id @default(cuid())
+  gradeId         Int
+  grade           Grade          @relation(fields: [gradeId], references: [id], onDelete: Cascade)
+  subjectId       String
+  subject         Subject        @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  title           String
+  description     String?
+  durationMinutes Int            @default(45)
+  totalPoints     Int            @default(0)
+  questions       ExamQuestion[]
+  attempts        Attempt[]
+  createdAt       DateTime       @default(now())
+
+  @@map("exams")
+}
+
+model ExamQuestion {
+  id         String   @id @default(cuid())
+  examId     String
+  exam       Exam     @relation(fields: [examId], references: [id], onDelete: Cascade)
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  order      Int
+
+  @@unique([examId, questionId])
+  @@map("exam_questions")
+}
+
+model Attempt {
+  id              String          @id @default(cuid())
+  studentId       String
+  student         User            @relation(fields: [studentId], references: [id], onDelete: Cascade)
+  examId          String?
+  exam            Exam?           @relation(fields: [examId], references: [id], onDelete: Cascade)
+  topicId         String?
+  mode            AttemptMode
+  status          AttemptStatus   @default(IN_PROGRESS)
+  startedAt       DateTime        @default(now())
+  submittedAt     DateTime?
+  totalPoints     Int             @default(0)
+  maxPoints       Int             @default(0)
+  percentage      Float?
+  durationSeconds Int?
+  answers         AttemptAnswer[]
+
+  @@map("attempts")
+}
+
+model AttemptAnswer {
+  id            String   @id @default(cuid())
+  attemptId     String
+  attempt       Attempt  @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  questionId    String
+  question      Question @relation(fields: [questionId], references: [id], onDelete: Cascade)
+  answerId      String?
+  answerText    String?
+  isCorrect     Boolean?
+  awardedPoints Int      @default(0)
+  answeredAt    DateTime @default(now())
+
+  @@unique([attemptId, questionId])
+  @@map("attempt_answers")
+}

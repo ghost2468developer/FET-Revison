@@ -1,0 +1,276 @@
+enum Role { STUDENT TEACHER ADMIN }
+enum QuestionType { MCQ TRUE_FALSE SHORT_ANSWER }
+enum Difficulty { EASY MEDIUM HARD }
+enum MaterialType { SUMMARY DEFINITION FORMULA EXAMPLE STUDY_NOTE }
+enum AttemptMode { PRACTICE EXAM }
+enum AttemptStatus { IN_PROGRESS SUBMITTED }
+
+type StudentProfile {
+  id: ID!
+  grade: Int!
+  school: String
+}
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  avatarUrl: String
+  role: Role!
+  profile: StudentProfile
+  createdAt: String!
+}
+
+type AuthPayload {
+  token: String!
+  user: User!
+}
+
+type Grade {
+  id: Int!
+  name: String!
+}
+
+type Subject {
+  id: ID!
+  code: String!
+  name: String!
+  color: String!
+  grade: Grade!
+  topicCount: Int!
+  examCount: Int!
+}
+
+type Topic {
+  id: ID!
+  name: String!
+  description: String!
+  order: Int!
+  subject: Subject!
+  materialCount: Int!
+  questionCount: Int!
+}
+
+type StudyMaterial {
+  id: ID!
+  type: MaterialType!
+  title: String!
+  content: String!
+}
+
+type AnswerOption {
+  id: ID!
+  text: String!
+}
+
+type PracticeQuestion {
+  id: ID!
+  type: QuestionType!
+  difficulty: Difficulty!
+  points: Int!
+  text: String!
+  options: [AnswerOption!]!
+}
+
+type AdminOption {
+  id: ID!
+  text: String!
+  isCorrect: Boolean!
+  keywords: [String!]!
+  alternatives: [String!]!
+}
+
+type AdminQuestion {
+  id: ID!
+  topicId: ID!
+  topicName: String!
+  type: QuestionType!
+  difficulty: Difficulty!
+  points: Int!
+  text: String!
+  explanation: String!
+  options: [AdminOption!]!
+}
+
+type AnswerResult {
+  isCorrect: Boolean!
+  awardedPoints: Int!
+  correctOptionId: String
+  correctOptionText: String
+  correctText: String
+  explanation: String
+  totalPoints: Int!
+  maxPoints: Int!
+  answeredCount: Int!
+}
+
+type ExamSummary {
+  id: ID!
+  title: String!
+  description: String!
+  durationMinutes: Int!
+  questionCount: Int!
+  totalPoints: Int!
+  subject: Subject!
+  grade: Grade!
+  bestPercentage: Float
+}
+
+type ExamSession {
+  attemptId: ID!
+  examId: ID!
+  title: String!
+  subjectName: String!
+  durationMinutes: Int!
+  deadlineAt: String!
+  questions: [PracticeQuestion!]!
+}
+
+type ReviewOption {
+  id: ID!
+  text: String!
+  isCorrect: Boolean!
+}
+
+type ReviewQuestion {
+  id: ID!
+  type: QuestionType!
+  difficulty: Difficulty!
+  points: Int!
+  text: String!
+  explanation: String
+  options: [ReviewOption!]!
+  correctText: String
+}
+
+type AttemptAnswerView {
+  question: ReviewQuestion!
+  selectedOptionId: String
+  selectedOptionText: String
+  correctText: String
+  isCorrect: Boolean
+  awardedPoints: Int!
+}
+
+type AttemptView {
+  id: ID!
+  mode: AttemptMode!
+  status: AttemptStatus!
+  exam: ExamSummary
+  topic: Topic
+  startedAt: String!
+  submittedAt: String
+  totalPoints: Int!
+  maxPoints: Int!
+  percentage: Float
+  durationSeconds: Int
+  answers: [AttemptAnswerView!]!
+}
+
+type AttemptSummary {
+  id: ID!
+  mode: AttemptMode!
+  title: String!
+  subjectName: String!
+  grade: Int!
+  percentage: Float!
+  totalPoints: Int!
+  maxPoints: Int!
+  submittedAt: String!
+}
+
+type TopicScore {
+  topic: Topic!
+  accuracy: Float!
+  attempts: Int!
+}
+
+type SubjectScore {
+  subject: Subject!
+  accuracy: Float!
+  attempts: Int!
+}
+
+type ScorePoint {
+  date: String!
+  percentage: Float!
+}
+
+type Dashboard {
+  questionsAttempted: Int!
+  correctRate: Float!
+  averagePercentage: Float
+  examCount: Int!
+  studyMinutes: Int!
+  currentStreak: Int!
+  weakTopics: [TopicScore!]!
+  strongTopics: [TopicScore!]!
+  subjectAccuracy: [SubjectScore!]!
+  recentActivity: [AttemptSummary!]!
+  examResults: [AttemptSummary!]!
+  scoreTrend: [ScorePoint!]!
+}
+
+input OptionInput {
+  text: String!
+  isCorrect: Boolean!
+  keywords: [String!]
+  alternatives: [String!]
+}
+
+type Query {
+  me: User
+  users: [User!]!
+  grades: [Grade!]!
+  subjects(gradeId: Int): [Subject!]!
+  subject(id: ID!): Subject
+  topics(subjectId: ID!): [Topic!]!
+  topic(id: ID!): Topic
+  studyMaterials(topicId: ID!): [StudyMaterial!]!
+  questions(topicId: ID!, questionIds: [ID!], type: QuestionType, difficulty: Difficulty): [PracticeQuestion!]!
+  adminQuestions(topicId: ID!): [AdminQuestion!]!
+  adminQuestion(id: ID!): AdminQuestion!
+  subjectQuestions(subjectId: ID!): [AdminQuestion!]!
+  exams(gradeId: Int): [ExamSummary!]!
+  exam(id: ID!): ExamSummary
+  examQuestions(examId: ID!): [AdminQuestion!]!
+  attempt(id: ID!): AttemptView
+  myAttempts(limit: Int, mode: AttemptMode): [AttemptSummary!]!
+  dashboard: Dashboard
+}
+
+type Mutation {
+  register(name: String!, email: String!, password: String!): AuthPayload!
+  login(email: String!, password: String!): AuthPayload!
+  loginWithGoogle(credential: String!, name: String, picture: String): AuthPayload!
+  updateProfile(name: String, grade: Int, school: String): User!
+
+  startPracticeSession(topicId: ID!, questionIds: [ID!]): ID!
+  submitPracticeAnswer(attemptId: ID!, questionId: ID!, answerId: ID, answerText: String): AnswerResult!
+  finishPracticeSession(attemptId: ID!): AttemptView!
+
+  startExam(examId: ID!): ExamSession!
+  submitExamAnswer(attemptId: ID!, questionId: ID!, answerId: ID, answerText: String): Boolean!
+  submitExam(attemptId: ID!): AttemptView!
+
+  # ---- teacher / admin content management ----
+  createSubject(gradeId: Int!, code: String!, name: String!, color: String): Subject!
+  updateSubject(id: ID!, code: String, name: String, color: String): Subject!
+  deleteSubject(id: ID!): Boolean!
+  createTopic(subjectId: ID!, name: String!, description: String): Topic!
+  updateTopic(id: ID!, name: String, description: String): Topic!
+  deleteTopic(id: ID!): Boolean!
+  createStudyMaterial(topicId: ID!, type: MaterialType!, title: String!, content: String!): StudyMaterial!
+  deleteStudyMaterial(id: ID!): Boolean!
+  createQuestion(topicId: ID!, type: QuestionType!, difficulty: Difficulty, points: Int, text: String!, explanation: String, options: [OptionInput!]!): AdminQuestion!
+  updateQuestion(id: ID!, text: String, explanation: String, points: Int, options: [OptionInput!]): AdminQuestion!
+  deleteQuestion(id: ID!): Boolean!
+  createExam(gradeId: Int!, subjectId: ID!, title: String!, description: String, durationMinutes: Int): ExamSummary!
+  updateExam(id: ID!, title: String, description: String, durationMinutes: Int): ExamSummary!
+  deleteExam(id: ID!): Boolean!
+  addExamQuestion(examId: ID!, questionId: ID!): ExamSummary!
+  removeExamQuestion(examId: ID!, questionId: ID!): ExamSummary!
+
+  # ---- admin only ----
+  setUserRole(userId: ID!, role: Role!): User!
+}
