@@ -162,7 +162,7 @@ export const phy12: SubjectSeed = {
           type: "SUMMARY",
           title: "Key ideas",
           content:
-            "**Photoelectric effect**: light behaves as particles (photons). If the frequency is below the **threshold frequency**, NO electrons are emitted - however intense the light. Above it: KE_max = hf − Φ.\nEach photon carries momentum p = h/λ.\n**Compton effect**: X-rays scattered by electrons emerge with a LONGER wavelength - evidence that photons carry momentum.",
+            "**Photoelectric effect**: light behaves as particles (photons). If the frequency is below the **threshold frequency**, NO electrons are emitted — however intense the light. Above it: KE_max = hf − Φ.\nEach photon carries momentum p = h/λ.\n**Compton effect**: X-rays scattered by electrons emerge with a LONGER wavelength — evidence that photons carry momentum.",
         },
         {
           type: "FORMULA",
@@ -183,7 +183,7 @@ export const phy12: SubjectSeed = {
           difficulty: "EASY",
           points: 2,
           text: "In the photoelectric effect, if the light frequency is below the threshold frequency, then:",
-          explanation: "Below the threshold, individual photons lack the energy to free an electron - no emission, no matter the intensity.",
+          explanation: "Below the threshold, individual photons lack the energy to free an electron — no emission, no matter the intensity.",
           options: [
             { text: "no electrons are emitted at all", correct: true },
             { text: "more electrons are emitted" },

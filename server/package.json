@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "tsx watch src/index.ts",
-    "build": "tsc -p tsconfig.json && node -e \"require('fs').copyFileSync('src/schema.graphql','dist/schema.graphql')\"",
+    "build": "tsc -p tsconfig.json",
     "start": "node dist/index.js",
     "seed": "tsx prisma/seed.ts",
     "db:push": "prisma db push",

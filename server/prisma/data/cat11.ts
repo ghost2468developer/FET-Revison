@@ -50,7 +50,7 @@ export const cat11: SubjectSeed = {
           difficulty: "EASY",
           points: 2,
           text: "A questionnaire that you design and run yourself is an example of:",
-          explanation: "You collected it first-hand for your purpose - primary data.",
+          explanation: "You collected it first-hand for your purpose — primary data.",
           options: [
             { text: "primary data", correct: true },
             { text: "secondary data" },
@@ -95,13 +95,13 @@ export const cat11: SubjectSeed = {
           type: "DEFINITION",
           title: "Primary key",
           content:
-            "A field (or combination of fields) that uniquely identifies each record in a table - no two records may share the same value.",
+            "A field (or combination of fields) that uniquely identifies each record in a table — no two records may share the same value.",
         },
         {
           type: "EXAMPLE",
           title: "Worked example",
           content:
-            "Students (studentNo PK, name, grade) and Marks (markId PK, studentNo FK, subject, mark):\nthe studentNo in Marks links back to Students - a one-to-many relationship.",
+            "Students (studentNo PK, name, grade) and Marks (markId PK, studentNo FK, subject, mark):\nthe studentNo in Marks links back to Students — a one-to-many relationship.",
         },
       ],
       questions: [

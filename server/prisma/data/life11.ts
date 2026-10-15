@@ -63,7 +63,7 @@ export const life11: SubjectSeed = {
           difficulty: "EASY",
           points: 1,
           text: "True or false: a recessive allele only shows its trait when no dominant allele is present.",
-          explanation: "That is the law of dominance - recessives are masked by dominants.",
+          explanation: "That is the law of dominance — recessives are masked by dominants.",
           options: [
             { text: "True", correct: true },
             { text: "False" },
@@ -93,7 +93,7 @@ export const life11: SubjectSeed = {
           type: "SUMMARY",
           title: "Key ideas",
           content:
-            "An **ecosystem** = a community of organisms + their physical environment.\n**Trophic levels**: producers (1st) → primary consumers (2nd) → secondary consumers (3rd) → tertiary consumers (4th).\nA **food web** shows many connected food chains.\nOnly about **10%** of energy is transferred between trophic levels - the rest is lost (mostly as heat).\n**Decomposers** break down dead matter and recycle nutrients back into the ecosystem.",
+            "An **ecosystem** = a community of organisms + their physical environment.\n**Trophic levels**: producers (1st) → primary consumers (2nd) → secondary consumers (3rd) → tertiary consumers (4th).\nA **food web** shows many connected food chains.\nOnly about **10%** of energy is transferred between trophic levels — the rest is lost (mostly as heat).\n**Decomposers** break down dead matter and recycle nutrients back into the ecosystem.",
         },
         {
           type: "DEFINITION",
@@ -182,7 +182,7 @@ export const life11: SubjectSeed = {
           type: "EXAMPLE",
           title: "A cautionary example",
           content:
-            "The Irish potato famine: Irish farmers grew one potato variety (very low genetic diversity). When blight struck, the whole crop failed - a disaster caused by low diversity.",
+            "The Irish potato famine: Irish farmers grew one potato variety (very low genetic diversity). When blight struck, the whole crop failed — a disaster caused by low diversity.",
         },
       ],
       questions: [

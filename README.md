@@ -1,4 +1,4 @@
-# 📚 FETRevise - FET Revision & Exam Preparation Platform
+# 📚 FETRevise — FET Revision & Exam Preparation Platform
 
 A full-stack web app for **South African Grade 10–12 learners** to revise subjects, practice
 questions with instant marking, take timed mock exams, and track their progress.
@@ -8,7 +8,7 @@ questions with instant marking, take timed mock exams, and track their progress.
 | Area | What it does |
 |---|---|
 | 👤 **Authentication** | Sign in / register with **Google (Gmail)** or email + password, JWT sessions, student profiles, Teacher & Admin roles |
-| 📚 **Subjects & Topics** | Grade → Subject → Topic structure (Maths, Physical Sciences, Life Sciences, Accounting, CAT - 13 subjects, 41 topics, 164 questions pre-seeded) |
+| 📚 **Subjects & Topics** | Grade → Subject → Topic structure (Maths, Physical Sciences, Life Sciences, Accounting, CAT — 13 subjects, 41 topics, 164 questions pre-seeded) |
 | 📝 **Revision** | Topic summaries, definitions, formulas, worked examples and study notes |
 | 🧠 **Practice** | Multiple choice, True/False and short-answer questions with difficulty levels and **instant marking + explanations** |
 | 📊 **Progress Dashboard** | Questions attempted, correct rate, average score, day streak, weak topics, strong topics, accuracy by subject, score trend, study history |
@@ -17,8 +17,8 @@ questions with instant marking, take timed mock exams, and track their progress.
 
 ## Tech stack
 
-- **React 18 + TypeScript** (Vite) - SPA, React Router, Apollo Client
-- **Node.js + TypeScript** - GraphQL API (**Apollo Server 4**) with the classic **schemas (SDL) + resolvers** structure
+- **React 18 + TypeScript** (Vite) — SPA, React Router, Apollo Client
+- **Node.js + TypeScript** — GraphQL API (**Apollo Server 4**) with the classic **schemas (SDL) + resolvers** structure
 - **Prisma ORM** on **PostgreSQL**
 - **JWT** auth (`jsonwebtoken`) + **Google Identity Services** verification (`google-auth-library`)
 - **bcryptjs** password hashing, **recharts** dashboard charts
@@ -83,7 +83,7 @@ npm start         # serves the web app AND the API on http://localhost:4000
 
 ## Google ("Sign in with Gmail") setup
 
-The app uses the modern **Google Identity Services** button - no redirect URIs needed.
+The app uses the modern **Google Identity Services** button — no redirect URIs needed.
 
 1. Go to [Google Cloud Console → APIs & Services → Credentials](https://console.cloud.google.com/apis/credentials)
 2. Create an **OAuth client ID** of type **Web application**
@@ -100,7 +100,7 @@ The app uses the modern **Google Identity Services** button - no redirect URIs n
    page. A Gmail user who has never registered is **auto-registered** on first sign-in;
    existing local accounts with the same email get their Google identity linked.
 
-Until you configure a client ID, the button is hidden and a notice explains why -
+Until you configure a client ID, the button is hidden and a notice explains why —
 email/password login works regardless.
 
 ## Environment variables
@@ -108,11 +108,11 @@ email/password login works regardless.
 | Variable | Where | Purpose |
 |---|---|---|
 | `DATABASE_URL` | server/.env | PostgreSQL connection string |
-| `JWT_SECRET` | server/.env | Secret used to sign JWTs - change in production |
+| `JWT_SECRET` | server/.env | Secret used to sign JWTs — change in production |
 | `PORT` | server/.env | API port (default 4000) |
 | `GOOGLE_CLIENT_ID` | server/.env | Enables Google sign-in on the API |
 | `ADMIN_EMAIL` | server/.env | Email that is granted the ADMIN role |
-| `VITE_GOOGLE_CLIENT_ID` | client/.env | Same client ID - renders the Google button |
+| `VITE_GOOGLE_CLIENT_ID` | client/.env | Same client ID — renders the Google button |
 
 ## GraphQL API (schemas + resolvers)
 
@@ -129,7 +129,7 @@ query { subjects { name code topicCount } }
 query($id: ID!) { topics(subjectId: $id) { name questionCount } }
 query($id: ID!) { studyMaterials(topicId: $id) { type title content } }
 
-# Practice (instant marking - the server grades and returns the explanation)
+# Practice (instant marking — the server grades and returns the explanation)
 mutation($id: ID!) { startPracticeSession(topicId: $id) }
 mutation($a: ID!, $q: ID!, $o: ID) {
   submitPracticeAnswer(attemptId: $a, questionId: $q, answerId: $o) {
@@ -154,9 +154,9 @@ Open the Apollo sandbox in dev mode at `http://localhost:4000/graphql` to explor
 Short-answer questions are graded automatically with a transparent rule
 (`server/src/grading.ts`):
 
-- **keywords** - ALL listed tokens must appear in the learner's answer (use for
+- **keywords** — ALL listed tokens must appear in the learner's answer (use for
   multi-part answers, e.g. `["45", "225"]` for "45° and 225°")
-- **alternatives** - at least ONE must appear (use for acceptable variants,
+- **alternatives** — at least ONE must appear (use for acceptable variants,
   e.g. `["equity", "capital"]`)
 - neither set → the answer must exactly match the expected text (fuzzy: case,
   punctuation and spacing ignored)
@@ -176,12 +176,31 @@ fet-platform/
 │   │   └── data/              # curriculum content (12 subject-grade modules)
 │   └── src/
 │       ├── index.ts           # Express + Apollo Server + static client
-│       ├── schema.graphql     # GraphQL SDL (the "schema")
+│       ├── schema.graphql.ts  # full SDL = merge of the feature fragments below
+│       ├── resolvers.ts       # full resolver map = merge of the features below
 │       ├── context.ts         # JWT → user, guard helpers
+│       ├── auth.ts            # JWT sign/verify
 │       ├── grading.ts         # shared answer-grading logic
 │       ├── google.ts          # Google ID-token verification
-│       └── resolvers/         # the "resolvers": auth, browse, practice,
-│                              #   exams, dashboard, admin
+│       └── components/        # ← one folder per feature (resolvers + schema)
+│           ├── auth/          #    register/login/loginWithGoogle/updateProfile/me
+│           │   ├── resolvers.ts
+│           │   └── schema.graphql.ts
+│           ├── subjects/      #    grades → subjects → topics → materials → questions
+│           │   ├── resolvers.ts
+│           │   └── schema.graphql.ts
+│           ├── practice/      #    instant-marking practice sessions
+│           │   ├── resolvers.ts
+│           │   └── schema.graphql.ts
+│           ├── exams/         #    timed mock exams, auto-marking, results
+│           │   ├── resolvers.ts
+│           │   └── schema.graphql.ts
+│           ├── dashboard/     #    progress analytics
+│           │   ├── resolvers.ts
+│           │   └── schema.graphql.ts
+│           └── admin/         #    teacher/admin CRUD + user roles
+│               ├── resolvers.ts
+│               └── schema.graphql.ts
 └── client/
     └── src/
         ├── api.ts             # Apollo client (auth link, 401 guard)
@@ -191,6 +210,12 @@ fet-platform/
         │                      #   Exams, ExamRunner, Result, Profile, Admin
         └── components/        # Layout, UI kit, Google button
 ```
+
+Each feature folder is self-contained: its `schema.graphql.ts` exports the SDL
+fragment (the `auth` fragment owns `type Query` / `type Mutation`, the rest use
+`extend type …`) and its `resolvers.ts` exports the resolver map. The root
+`src/schema.graphql.ts` and `src/resolvers.ts` simply merge the six features into
+the schema and resolvers handed to Apollo Server.
 
 ## Notes
 

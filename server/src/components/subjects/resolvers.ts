@@ -1,5 +1,5 @@
-import { prisma } from "../db";
-import { Ctx, userError, requireUser } from "../context";
+import { prisma } from "../../db";
+import { Ctx, userError, requireUser } from "../../context";
 
 export function mapSubject(s: any) {
   return {
@@ -56,7 +56,7 @@ export function toAdminQuestion(q: any) {
   };
 }
 
-export const browseResolvers = {
+export const subjectsResolvers = {
   Query: {
     grades: () =>
       prisma.grade.findMany({ orderBy: { id: "asc" } }).then((gs) =>
@@ -115,7 +115,7 @@ export const browseResolvers = {
     },
 
     adminQuestions: async (_: any, args: any, ctx: Ctx) => {
-      const { requireStaff } = await import("../context");
+      const { requireStaff } = await import("../../context");
       requireStaff(ctx);
       const rows = await prisma.question.findMany({
         where: { topicId: args.topicId },
@@ -126,7 +126,7 @@ export const browseResolvers = {
     },
 
     adminQuestion: async (_: any, args: any, ctx: Ctx) => {
-      const { requireStaff } = await import("../context");
+      const { requireStaff } = await import("../../context");
       requireStaff(ctx);
       const q = await prisma.question.findUnique({
         where: { id: args.id },
@@ -137,7 +137,7 @@ export const browseResolvers = {
     },
 
     subjectQuestions: async (_: any, args: any, ctx: Ctx) => {
-      const { requireStaff } = await import("../context");
+      const { requireStaff } = await import("../../context");
       requireStaff(ctx);
       const rows = await prisma.question.findMany({
         where: { topic: { subjectId: args.subjectId } },

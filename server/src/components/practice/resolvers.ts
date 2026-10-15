@@ -1,8 +1,7 @@
-import { prisma } from "../db";
-import { gradeSelection } from "../grading";
-import { Ctx, userError, requireUser } from "../context";
-import { toPracticeQuestion, mapTopic } from "./browse";
-import { mapExamSummary, resolveAttemptView } from "./exams";
+import { prisma } from "../../db";
+import { gradeSelection } from "../../grading";
+import { Ctx, userError, requireUser } from "../../context";
+import { resolveAttemptView } from "../exams/resolvers";
 
 async function finishAttempt(attemptId: string) {
   const attempt = await prisma.attempt.findUnique({ where: { id: attemptId } });
@@ -57,7 +56,7 @@ export const practiceResolvers = {
       const attempt = await prisma.attempt.findFirst({
         where: { id: args.attemptId, studentId: user.id, mode: "PRACTICE" },
       });
-      if (!attempt) throw userError("Practice session not found - please start a new one.");
+      if (!attempt) throw userError("Practice session not found — please start a new one.");
       if (attempt.status === "SUBMITTED") throw userError("This session is already finished.");
 
       const q = await prisma.question.findFirst({
@@ -138,7 +137,7 @@ export const practiceResolvers = {
         return {
           id: a.id,
           mode: a.mode,
-          title: a.exam ? a.exam.title : `Practice - ${t?.name ?? "Topic"}`,
+          title: a.exam ? a.exam.title : `Practice — ${t?.name ?? "Topic"}`,
           subjectName: a.exam?.subject?.name ?? t?.subject?.name ?? "",
           grade: a.exam?.gradeId ?? t?.subject?.gradeId ?? 0,
           percentage: a.percentage ?? 0,

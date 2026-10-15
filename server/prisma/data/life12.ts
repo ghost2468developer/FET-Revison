@@ -28,7 +28,7 @@ export const life12: SubjectSeed = {
           type: "EXAMPLE",
           title: "Worked example",
           content:
-            "After intense exercise, your muscles switch to anaerobic respiration and produce lactic acid - this causes the burning, tired feeling in your legs.",
+            "After intense exercise, your muscles switch to anaerobic respiration and produce lactic acid — this causes the burning, tired feeling in your legs.",
         },
       ],
       questions: [
@@ -106,7 +106,7 @@ export const life12: SubjectSeed = {
           type: "EXAMPLE",
           title: "A mutation example",
           content:
-            "A single base change in the HBB gene causes sickle-cell anaemia - one nucleotide difference changes the haemoglobin protein and the shape of red blood cells.",
+            "A single base change in the HBB gene causes sickle-cell anaemia — one nucleotide difference changes the haemoglobin protein and the shape of red blood cells.",
         },
       ],
       questions: [

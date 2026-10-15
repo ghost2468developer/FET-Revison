@@ -1,7 +1,7 @@
-import { prisma } from "../db";
-import { Ctx, userError, requireStaff, requireAdmin, publicUser } from "../context";
-import { mapSubject, toAdminQuestion } from "./browse";
-import { mapExamSummary } from "./exams";
+import { prisma } from "../../db";
+import { Ctx, userError, requireStaff, requireAdmin, publicUser } from "../../context";
+import { mapSubject, toAdminQuestion } from "../subjects/resolvers";
+import { mapExamSummary } from "../exams/resolvers";
 
 async function recalcExamPoints(examId: string) {
   const rows = await prisma.examQuestion.findMany({
@@ -103,7 +103,7 @@ export const adminResolvers = {
         },
         include: { subject: { include: { grade: true } }, _count: { select: { materials: true, questions: true } } },
       });
-      const { mapTopic } = await import("./browse");
+      const { mapTopic } = await import("../subjects/resolvers");
       return mapTopic(t);
     },
 
@@ -117,7 +117,7 @@ export const adminResolvers = {
         data,
         include: { subject: { include: { grade: true } }, _count: { select: { materials: true, questions: true } } },
       });
-      const { mapTopic } = await import("./browse");
+      const { mapTopic } = await import("../subjects/resolvers");
       return mapTopic(t);
     },
 

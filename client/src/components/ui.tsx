@@ -191,7 +191,7 @@ export function fmtDateTime(iso: string) {
 }
 
 export function fmtDuration(totalSeconds: number | null) {
-  if (totalSeconds == null) return "-";
+  if (totalSeconds == null) return "—";
   const m = Math.floor(totalSeconds / 60);
   const s = totalSeconds % 60;
   return m > 0 ? `${m}m ${s}s` : `${s}s`;

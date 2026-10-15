@@ -148,7 +148,7 @@ export default function ExamRunner() {
           </div>
           <h3 style={{ marginTop: 0 }}>Before you start</h3>
           <ul style={{ color: "var(--muted)", lineHeight: 1.8, paddingLeft: 20, margin: 0 }}>
-            <li>The timer starts as soon as you begin - it cannot be paused.</li>
+            <li>The timer starts as soon as you begin — it cannot be paused.</li>
             <li>You can move between questions and change your answers any time.</li>
             <li>Answers are saved automatically as you go.</li>
             <li>The exam is submitted automatically when time runs out.</li>
@@ -159,7 +159,7 @@ export default function ExamRunner() {
               Back
             </Link>
             <button className="btn btn-primary" onClick={begin}>
-              I'm ready - start exam →
+              I'm ready — start exam →
             </button>
           </div>
         </Card>

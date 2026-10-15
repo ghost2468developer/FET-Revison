@@ -1,6 +1,6 @@
-import { prisma } from "../db";
-import { Ctx, requireUser } from "../context";
-import { mapSubject } from "./browse";
+import { prisma } from "../../db";
+import { Ctx, requireUser } from "../../context";
+import { mapSubject } from "../subjects/resolvers";
 
 const isoDay = (d: Date) => d.toISOString().slice(0, 10);
 
@@ -49,7 +49,7 @@ export const dashboardResolvers = {
         return {
           id: a.id,
           mode: a.mode,
-          title: a.exam ? a.exam.title : `Practice - ${topic?.name ?? "Topic"}`,
+          title: a.exam ? a.exam.title : `Practice — ${topic?.name ?? "Topic"}`,
           subjectName: a.exam?.subject?.name ?? subj?.name ?? "",
           grade: a.exam ? a.exam.gradeId : subj ? subj.gradeId : 0,
           percentage: a.percentage ?? 0,

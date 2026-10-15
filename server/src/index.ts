@@ -4,7 +4,7 @@ import path from "path";
 import fs from "fs";
 import { ApolloServer } from "@apollo/server";
 import { expressMiddleware } from "@apollo/server/express4";
-import { typeDefs } from "./schema";
+import { typeDefs } from "./schema.graphql";
 import { resolvers } from "./resolvers";
 import { createContext } from "./context";
 
@@ -35,7 +35,7 @@ async function main() {
     app.get("/", (_req, res) =>
       res
         .type("text/plain")
-        .send("API is running. GraphQL endpoint: /graphql - client build not found (run `npm run build` in client/).")
+        .send("API is running. GraphQL endpoint: /graphql — client build not found (run `npm run build` in client/).")
     );
   }
 

@@ -1,7 +1,7 @@
-import { prisma } from "../db";
-import { gradeSelection } from "../grading";
-import { Ctx, userError, requireUser } from "../context";
-import { mapSubject, toPracticeQuestion } from "./browse";
+import { prisma } from "../../db";
+import { gradeSelection } from "../../grading";
+import { Ctx, userError, requireUser } from "../../context";
+import { mapSubject, toPracticeQuestion } from "../subjects/resolvers";
 
 export async function mapExamSummary(e: any, userId?: string | null): Promise<any> {
   let bestPercentage: number | null = null;

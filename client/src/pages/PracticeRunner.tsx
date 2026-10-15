@@ -174,8 +174,8 @@ export default function PracticeRunner() {
               {finalPct != null && finalPct >= 70
                 ? "Well done! 🎉"
                 : finalPct != null && finalPct >= 40
-                  ? "Good effort - keep going!"
-                  : "Keep practising - you've got this."}
+                  ? "Good effort — keep going!"
+                  : "Keep practising — you've got this."}
             </h2>
             <p className="muted mb-0">
               You scored {finalPoints[0]} of {finalPoints[1]} points in{" "}
@@ -281,7 +281,7 @@ export default function PracticeRunner() {
             <div className={`feedback ${result!.isCorrect ? "ok" : "bad"}`}>
               <div className="feedback-title">
                 {result!.isCorrect
-                  ? `✅ Correct - +${result!.awardedPoints} pts`
+                  ? `✅ Correct — +${result!.awardedPoints} pts`
                   : "❌ Not quite"}
               </div>
               {!result!.isCorrect ? (

@@ -16,7 +16,7 @@ export const life10: SubjectSeed = {
           type: "SUMMARY",
           title: "Key ideas",
           content:
-            "Life is classified into **five kingdoms**: Monera (bacteria), Protista, Fungi, Plantae and Animalia.\n**Viruses are NOT classified as living** - they cannot replicate without a host and carry out no life processes on their own.\nTaxonomic hierarchy: kingdom → phylum → class → order → family → genus → species.\n**Binomial nomenclature**: species are named *Genus species*, e.g. *Homo sapiens* (genus first, both parts with only the genus capitalised).",
+            "Life is classified into **five kingdoms**: Monera (bacteria), Protista, Fungi, Plantae and Animalia.\n**Viruses are NOT classified as living** — they cannot replicate without a host and carry out no life processes on their own.\nTaxonomic hierarchy: kingdom → phylum → class → order → family → genus → species.\n**Binomial nomenclature**: species are named *Genus species*, e.g. *Homo sapiens* (genus first, both parts with only the genus capitalised).",
         },
         {
           type: "DEFINITION",
@@ -37,7 +37,7 @@ export const life10: SubjectSeed = {
           difficulty: "EASY",
           points: 2,
           text: "How many kingdoms are there in the five-kingdom classification?",
-          explanation: "Monera, Protista, Fungi, Plantae and Animalia - five in total.",
+          explanation: "Monera, Protista, Fungi, Plantae and Animalia — five in total.",
           options: [
             { text: "5", correct: true },
             { text: "3" },
@@ -93,7 +93,7 @@ export const life10: SubjectSeed = {
           type: "SUMMARY",
           title: "Key ideas",
           content:
-            "All living things are made of **cells**.\n**Prokaryotic** cells (bacteria) have NO membrane-bound nucleus. **Eukaryotic** cells (plants, animals, fungi) do.\nKey organelles:\n- **Nucleus** - controls the cell, holds the DNA\n- **Mitochondria** - cellular respiration (releases energy, ATP)\n- **Ribosomes** - protein synthesis\n- **Chloroplasts** - photosynthesis (plant cells only)\n- **Cell membrane** - controls what enters and leaves the cell",
+            "All living things are made of **cells**.\n**Prokaryotic** cells (bacteria) have NO membrane-bound nucleus. **Eukaryotic** cells (plants, animals, fungi) do.\nKey organelles:\n- **Nucleus** — controls the cell, holds the DNA\n- **Mitochondria** — cellular respiration (releases energy, ATP)\n- **Ribosomes** — protein synthesis\n- **Chloroplasts** — photosynthesis (plant cells only)\n- **Cell membrane** — controls what enters and leaves the cell",
         },
         {
           type: "DEFINITION",
@@ -140,7 +140,7 @@ export const life10: SubjectSeed = {
           difficulty: "EASY",
           points: 1,
           text: "True or false: prokaryotic cells have a membrane-bound nucleus.",
-          explanation: "Prokaryotes (bacteria) have no nucleus - their DNA floats in the cytoplasm.",
+          explanation: "Prokaryotes (bacteria) have no nucleus — their DNA floats in the cytoplasm.",
           options: [
             { text: "True" },
             { text: "False", correct: true },
@@ -178,7 +178,7 @@ export const life10: SubjectSeed = {
           type: "EXAMPLE",
           title: "The menstrual cycle",
           content:
-            "The average menstrual cycle is 28 days. Ovulation (release of the egg) occurs around day 14 - the fertile window.",
+            "The average menstrual cycle is 28 days. Ovulation (release of the egg) occurs around day 14 — the fertile window.",
         },
       ],
       questions: [

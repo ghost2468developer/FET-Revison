@@ -38,7 +38,7 @@ export default function Dashboard() {
           <h1 className="page-title">Sawubona, {firstName} 👋</h1>
           <p className="page-sub">
             {user?.profile ? `Grade ${user.profile.grade}` : ""}
-            {user?.profile?.school ? ` · ${user.profile.school}` : ""} - here's how your revision
+            {user?.profile?.school ? ` · ${user.profile.school}` : ""} — here's how your revision
             is going.
           </p>
         </div>
@@ -47,7 +47,7 @@ export default function Dashboard() {
 
       <div className="grid stats-grid">
         <Stat icon="✍️" label="Questions attempted" value={d.questionsAttempted} sub={`${d.correctRate}% correct overall`} />
-        <Stat icon="🎯" label="Average score" value={d.averagePercentage == null ? "-" : `${Math.round(d.averagePercentage)}%`} sub="across finished sessions & exams" />
+        <Stat icon="🎯" label="Average score" value={d.averagePercentage == null ? "—" : `${Math.round(d.averagePercentage)}%`} sub="across finished sessions & exams" />
         <Stat icon="🔥" label="Day streak" value={d.currentStreak} sub="keep it alive today!" />
         <Stat icon="🧪" label="Mock exams done" value={d.examCount} sub={`${d.studyMinutes} min of study time`} />
       </div>
@@ -56,7 +56,7 @@ export default function Dashboard() {
         <div className="card mt-24">
           <Empty
             title="You haven't attempted any questions yet"
-            hint="Pick a subject, open a topic and start a practice session - your progress will show up here."
+            hint="Pick a subject, open a topic and start a practice session — your progress will show up here."
             action={
               <Link to="/subjects" className="btn btn-primary">
                 Start with a subject
@@ -107,7 +107,7 @@ export default function Dashboard() {
 
           <div className="grid grid-2 mt-24">
             <Card>
-              <h3 style={{ margin: "0 0 14px", fontSize: 16 }}>📌 Weak topics - focus here</h3>
+              <h3 style={{ margin: "0 0 14px", fontSize: 16 }}>📌 Weak topics — focus here</h3>
               {d.weakTopics.length === 0 ? (
                 <p className="muted small mb-0">
                   No weak topics detected (topics need at least 3 attempts to be ranked). Keep
@@ -124,7 +124,7 @@ export default function Dashboard() {
               )}
             </Card>
             <Card>
-              <h3 style={{ margin: "0 0 14px", fontSize: 16 }}>💪 Strong topics - keep it up</h3>
+              <h3 style={{ margin: "0 0 14px", fontSize: 16 }}>💪 Strong topics — keep it up</h3>
               {d.strongTopics.length === 0 ? (
                 <p className="muted small mb-0">Your strong topics will appear once you practice more.</p>
               ) : (

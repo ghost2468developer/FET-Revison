@@ -272,7 +272,7 @@ async function main() {
       correct: correctFlags[i],
     }));
 
-  // 1) 12 days ago - MATH: Functions & transformations (4 questions, 3 correct)
+  // 1) 12 days ago — MATH: Functions & transformations (4 questions, 3 correct)
   {
     const topic = await topicOf(math12.id, 0);
     const qs = await qsOfTopic(topic.id);
@@ -281,7 +281,7 @@ async function main() {
       picks: buildPicks(qs, [true, true, false, true]),
     });
   }
-  // 2) 9 days ago - PHYS: Geometrical optics (4 questions, 2 correct)
+  // 2) 9 days ago — PHYS: Geometrical optics (4 questions, 2 correct)
   {
     const topic = await topicOf(phy12.id, 0);
     const qs = await qsOfTopic(topic.id);
@@ -290,7 +290,7 @@ async function main() {
       picks: buildPicks(qs, [true, false, true, true]),
     });
   }
-  // 3) 6 days ago - MATH: Trig graphs & addition formulas (4 correct)
+  // 3) 6 days ago — MATH: Trig graphs & addition formulas (4 correct)
   {
     const topic = await topicOf(math12.id, 1);
     const qs = await qsOfTopic(topic.id);
@@ -299,7 +299,7 @@ async function main() {
       picks: buildPicks(qs, [true, true, true, true]),
     });
   }
-  // 4) 5 days ago - MATH mock exam (10 questions, 8 correct)
+  // 4) 5 days ago — MATH mock exam (10 questions, 8 correct)
   {
     const exam = await prisma.exam.findFirstOrThrow({ where: { subjectId: math12.id } });
     const rows = await prisma.examQuestion.findMany({
@@ -318,7 +318,7 @@ async function main() {
     }));
     await makeAttempt({ mode: "EXAM", examId: exam.id, daysAgo: 5, durationMin: 42, picks });
   }
-  // 5) 3 days ago - LIFE: Cell respiration & photosynthesis (4 questions, 3 correct)
+  // 5) 3 days ago — LIFE: Cell respiration & photosynthesis (4 questions, 3 correct)
   {
     const topic = await topicOf(life12.id, 0);
     const qs = await qsOfTopic(topic.id);
@@ -327,7 +327,7 @@ async function main() {
       picks: buildPicks(qs, [true, true, false, true]),
     });
   }
-  // 6) 1 day ago - PHYS mock exam (10 questions, 6 correct)
+  // 6) 1 day ago — PHYS mock exam (10 questions, 6 correct)
   {
     const exam = await prisma.exam.findFirstOrThrow({ where: { subjectId: phy12.id } });
     const rows = await prisma.examQuestion.findMany({
@@ -346,7 +346,7 @@ async function main() {
     }));
     await makeAttempt({ mode: "EXAM", examId: exam.id, daysAgo: 1, durationMin: 38, picks });
   }
-  // 7) today - MATH: Permutations & combinations (3 questions, 2 correct)
+  // 7) today — MATH: Permutations & combinations (3 questions, 2 correct)
   {
     const topic = await topicOf(math12.id, 2);
     const qs = await qsOfTopic(topic.id);

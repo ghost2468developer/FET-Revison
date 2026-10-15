@@ -16,7 +16,7 @@ export const phy11: SubjectSeed = {
           type: "SUMMARY",
           title: "Key ideas",
           content:
-            "A current-carrying conductor produces a **circular magnetic field** around it (right-hand grip rule).\nA conductor carrying current in a magnetic field experiences a force: **F = BIL** (when B is perpendicular to the wire).\n**The motor effect**: the forces on opposite sides of a coil are in opposite directions, so the coil rotates - this is how electric motors work.",
+            "A current-carrying conductor produces a **circular magnetic field** around it (right-hand grip rule).\nA conductor carrying current in a magnetic field experiences a force: **F = BIL** (when B is perpendicular to the wire).\n**The motor effect**: the forces on opposite sides of a coil are in opposite directions, so the coil rotates — this is how electric motors work.",
         },
         {
           type: "FORMULA",
@@ -110,7 +110,7 @@ export const phy11: SubjectSeed = {
           difficulty: "EASY",
           points: 2,
           text: "The relationship between frequency and period is:",
-          explanation: "f = 1/T - frequency is the reciprocal of the period.",
+          explanation: "f = 1/T — frequency is the reciprocal of the period.",
           options: [
             { text: "f = 1/T", correct: true },
             { text: "f = T" },
@@ -209,7 +209,7 @@ export const phy11: SubjectSeed = {
           difficulty: "EASY",
           points: 1,
           text: "True or false: Lenz's law states that the induced current opposes the change that produced it.",
-          explanation: "That is Lenz's law - it is a consequence of conservation of energy.",
+          explanation: "That is Lenz's law — it is a consequence of conservation of energy.",
           options: [
             { text: "True", correct: true },
             { text: "False" },
