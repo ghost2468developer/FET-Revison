@@ -34,7 +34,7 @@ export default function Subjects() {
           <h1 className="page-title">Subjects</h1>
           <p className="page-sub">
             {isStaff
-              ? "All subjects across grades — pick a grade to filter."
+              ? "All subjects across grades - pick a grade to filter."
               : `${gradeName} subjects. Want a different grade? Update it in My profile.`}
           </p>
         </div>

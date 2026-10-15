@@ -31,7 +31,7 @@ export function normalize(s: string): string {
 /**
  * Short-answer matching rule for one correct answer row:
  *  - `keywords`: ALL must be present in the learner's answer (use for
- *    multi-part answers — every required part must be mentioned).
+ *    multi-part answers - every required part must be mentioned).
  *  - `alternatives`: at least ONE must be present (use for acceptable
  *    spellings/phrasings, e.g. "equity" or "capital").
  *  - neither set: the normalised answer must equal the normalised text.

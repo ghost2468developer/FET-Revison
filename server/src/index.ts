@@ -35,7 +35,7 @@ async function main() {
     app.get("/", (_req, res) =>
       res
         .type("text/plain")
-        .send("API is running. GraphQL endpoint: /graphql — client build not found (run `npm run build` in client/).")
+        .send("API is running. GraphQL endpoint: /graphql - client build not found (run `npm run build` in client/).")
     );
   }
 

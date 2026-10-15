@@ -16,7 +16,7 @@ export const math12: SubjectSeed = {
           type: "SUMMARY",
           title: "Key ideas",
           content:
-            "Transformations of f(x) = x²:\n- f(x + a): shift LEFT by a\n- f(x) + b: shift UP by b\n- −f(x): reflect in the x-axis\n- f(2x): horizontal compression (factor ½)\nThe domain and range change with the transformation — always update the range from the new minimum or maximum.",
+            "Transformations of f(x) = x²:\n- f(x + a): shift LEFT by a\n- f(x) + b: shift UP by b\n- −f(x): reflect in the x-axis\n- f(2x): horizontal compression (factor ½)\nThe domain and range change with the transformation - always update the range from the new minimum or maximum.",
         },
         {
           type: "FORMULA",
@@ -162,7 +162,7 @@ export const math12: SubjectSeed = {
           type: "SUMMARY",
           title: "Key ideas",
           content:
-            "n! = n × (n−1) × … × 2 × 1, and 0! = 1.\n**Permutations** nPr = n! / (n−r)! — ORDER MATTERS (arrangements, positions, ranks).\n**Combinations** nCr = n! / [r!(n−r)!] — order does NOT matter (selections, committees, pairs).\nRule of thumb: can you rank the items? Use permutations. Are you just selecting a group? Use combinations.",
+            "n! = n × (n−1) × … × 2 × 1, and 0! = 1.\n**Permutations** nPr = n! / (n−r)! - ORDER MATTERS (arrangements, positions, ranks).\n**Combinations** nCr = n! / [r!(n−r)!] - order does NOT matter (selections, committees, pairs).\nRule of thumb: can you rank the items? Use permutations. Are you just selecting a group? Use combinations.",
         },
         {
           type: "FORMULA",

@@ -73,7 +73,7 @@ export default function Login() {
         <h1 className="hero-title">Revise smarter. Walk into your exams ready.</h1>
         <p className="hero-sub">
           Topic-by-topic revision notes, instant-marking practice questions, and timed mock
-          exams for FET subjects — with progress tracking that shows you exactly what to
+          exams for FET subjects - with progress tracking that shows you exactly what to
           work on.
         </p>
         <div className="feature">
