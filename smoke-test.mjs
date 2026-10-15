@@ -1,4 +1,4 @@
-/* API smoke test — exercises the full flow over HTTP. */
+/* API smoke test - exercises the full flow over HTTP. */
 const BASE = "http://localhost:4000/graphql";
 
 async function gql(query, variables = {}, token = null) {
@@ -20,7 +20,7 @@ function ok(name, cond) {
 }
 
 (async () => {
-  console.log("— auth —");
+  console.log("- auth -");
   const reg = await gql(
     `mutation { register(name: "Test Student", email: "test+api@example.com", password: "secret123") { token user { name email role profile { grade } } } }`
   );
@@ -40,7 +40,7 @@ function ok(name, cond) {
   const noAuth = await fetch(BASE, { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ query: `query { dashboard { questionsAttempted } }` }) }).then((r) => r.json());
   ok("unauthenticated dashboard rejected", noAuth.errors?.[0]?.extensions?.code === "UNAUTHENTICATED");
 
-  console.log("— browse —");
+  console.log("- browse -");
   const grades = await gql(`query { grades { id name } }`);
   ok("3 grades", grades.grades.length === 3);
 
@@ -60,12 +60,12 @@ function ok(name, cond) {
   const mcq = qs.questions.find((q) => q.type === "MCQ");
   const sa = qs.questions.find((q) => q.type === "SHORT_ANSWER");
 
-  console.log("— practice —");
+  console.log("- practice -");
   const sess = await gql(`mutation($id: ID!) { startPracticeSession(topicId: $id) }`, { id: topic.id }, demo);
   ok("start practice session", typeof sess.startPracticeSession === "string");
   const attemptId = sess.startPracticeSession;
 
-  // correct MCQ: pick each option once via the DB check — find correct option by asking server (it will tell us after submit); instead submit one option and read result
+  // correct MCQ: pick each option once via the DB check - find correct option by asking server (it will tell us after submit); instead submit one option and read result
   const r1 = await gql(
     `mutation($a: ID!, $q: ID!, $o: ID) { submitPracticeAnswer(attemptId: $a, questionId: $q, answerId: $o) { isCorrect awardedPoints correctOptionId explanation totalPoints answeredCount } }`,
     { a: attemptId, q: mcq.id, o: mcq.options[0].id },
@@ -82,7 +82,7 @@ function ok(name, cond) {
   const fin = await gql(`mutation($a: ID!) { finishPracticeSession(attemptId: $a) { totalPoints maxPoints percentage answers { isCorrect } } }`, { a: attemptId }, demo);
   ok("finish practice session", typeof fin.finishPracticeSession.percentage === "number");
 
-  console.log("— exam —");
+  console.log("- exam -");
   const exams = await gql(`query { exams { id title questionCount durationMinutes bestPercentage } }`, {}, demo);
   ok("exams for grade 12", exams.exams.length === 5);
   const exam = exams.exams.find((e) => e.title.includes("Mathematics"));
@@ -106,14 +106,14 @@ function ok(name, cond) {
   const mismatch = await fetch(BASE, { method: "POST", headers: { "content-type": "application/json", authorization: `Bearer ${demo}` }, body: JSON.stringify({ query: `mutation($id: ID!) { startExam(examId: $id) { attemptId } }`, variables: { id: g10exams.exams[0].id } }) }).then((r) => r.json());
   ok("grade mismatch blocked", !!mismatch.errors);
 
-  console.log("— dashboard —");
+  console.log("- dashboard -");
   const dash = await gql(`query { dashboard { questionsAttempted correctRate averagePercentage currentStreak weakTopics { accuracy } strongTopics { accuracy } subjectAccuracy { subject { name } accuracy } recentActivity { title } scoreTrend { date } } }`, {}, demo);
   const d = dash.dashboard;
   ok("dashboard stats", d.questionsAttempted > 0 && typeof d.averagePercentage === "number");
   ok("dashboard trend", d.scoreTrend.length >= 2);
   ok("dashboard recent activity", d.recentActivity.length >= 2);
 
-  console.log("— admin —");
+  console.log("- admin -");
   const adminLogin = await gql(`mutation { login(email: "admin@fet.co.za", password: "Admin123!") { token user { role } } }`);
   const admin = adminLogin.login.token;
   ok("admin login", adminLogin.login.user.role === "ADMIN");

@@ -1,5 +1,5 @@
 /**
- * PRACTICE — schema fragment
+ * PRACTICE - schema fragment
  * Instant-marking practice sessions per topic.
  */
 export const schema: string = /* GraphQL */ `

@@ -208,7 +208,7 @@ export const math11: SubjectSeed = {
           difficulty: "EASY",
           points: 1,
           text: "True or false: sin²θ + cos²θ = 1 for all angles θ.",
-          explanation: "This is the fundamental Pythagorean identity — it always holds.",
+          explanation: "This is the fundamental Pythagorean identity - it always holds.",
           options: [
             { text: "True", correct: true },
             { text: "False" },

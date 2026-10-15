@@ -99,13 +99,13 @@ export const cat12: SubjectSeed = {
           type: "DEFINITION",
           title: "Slide master",
           content:
-            "The template that controls the overall design of all slides in a presentation — changing it changes every slide at once.",
+            "The template that controls the overall design of all slides in a presentation - changing it changes every slide at once.",
         },
         {
           type: "EXAMPLE",
           title: "Worked example",
           content:
-            "Move the school logo on the slide master and it instantly appears in the same position on all 30 slides — no per-slide editing needed.",
+            "Move the school logo on the slide master and it instantly appears in the same position on all 30 slides - no per-slide editing needed.",
         },
       ],
       questions: [
@@ -127,7 +127,7 @@ export const cat12: SubjectSeed = {
           difficulty: "MEDIUM",
           points: 2,
           text: "A good presentation slide should:",
-          explanation: "Slides support the speaker — limited, clear text works far better than walls of text.",
+          explanation: "Slides support the speaker - limited, clear text works far better than walls of text.",
           options: [
             { text: "use limited text and support the speaker's message", correct: true },
             { text: "contain as much text as possible" },
@@ -254,7 +254,7 @@ export const cat12: SubjectSeed = {
           type: "DEFINITION",
           title: "HTML",
           content:
-            "HyperText Markup Language — the markup language that defines the structure and content of a web page.",
+            "HyperText Markup Language - the markup language that defines the structure and content of a web page.",
         },
         {
           type: "EXAMPLE",

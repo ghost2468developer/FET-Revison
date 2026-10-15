@@ -1,5 +1,5 @@
 /**
- * AUTH — schema fragment
+ * AUTH - schema fragment
  * User model, roles and all authentication operations.
  */
 export const schema: string = /* GraphQL */ `

@@ -37,7 +37,7 @@ export const acct12: SubjectSeed = {
           difficulty: "EASY",
           points: 2,
           text: "A cheque paid by a business but not yet presented for payment is called an:",
-          explanation: "It is an outstanding (uncashed) cheque — deducted from the bank balance on the BRS.",
+          explanation: "It is an outstanding (uncashed) cheque - deducted from the bank balance on the BRS.",
           options: [
             { text: "outstanding cheque", correct: true },
             { text: "unpresented deposit" },
@@ -214,7 +214,7 @@ export const acct12: SubjectSeed = {
           difficulty: "EASY",
           points: 1,
           text: "True or false: in a partnership, partners share profits and losses in the agreed ratio.",
-          explanation: "Yes — the ratio in the partnership agreement applies to both profits and losses.",
+          explanation: "Yes - the ratio in the partnership agreement applies to both profits and losses.",
           options: [
             { text: "True", correct: true },
             { text: "False" },
@@ -240,7 +240,7 @@ export const acct12: SubjectSeed = {
           type: "SUMMARY",
           title: "Key ideas",
           content:
-            "A **company is a separate legal entity** — it can own assets, borrow money and sue or be sued, independently of its owners.\nTypes: **private (Pty) Ltd**, **public Ltd**, and non-profit.\n**Share capital** is the money raised by selling shares.\n**Ordinary shares** carry voting rights; **preference shares** carry a fixed dividend and usually no voting rights.\nA private company must have at least one director.",
+            "A **company is a separate legal entity** - it can own assets, borrow money and sue or be sued, independently of its owners.\nTypes: **private (Pty) Ltd**, **public Ltd**, and non-profit.\n**Share capital** is the money raised by selling shares.\n**Ordinary shares** carry voting rights; **preference shares** carry a fixed dividend and usually no voting rights.\nA private company must have at least one director.",
         },
         {
           type: "DEFINITION",

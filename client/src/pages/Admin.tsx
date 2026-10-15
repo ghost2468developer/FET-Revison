@@ -344,7 +344,7 @@ function TopicList({
         </div>
       ) : null}
       {topics.length === 0 ? (
-        <Empty title="No topics yet — add the first one" />
+        <Empty title="No topics yet - add the first one" />
       ) : (
         topics.map((t) => (
           <TopicRow
@@ -690,7 +690,7 @@ function QuestionEditor({ topicId, onSaved }: { topicId: string; onSaved: () => 
         <div className="mt-16">
           {form.type === "SHORT_ANSWER" ? (
             <div className="hint" style={{ marginBottom: 8 }}>
-              Expected answers — mark at least one as correct.
+              Expected answers - mark at least one as correct.
               <br />
               <b>Keywords</b> (comma-separated): ALL must appear in the learner's answer (for multi-part answers).
               <br />
@@ -1058,7 +1058,7 @@ function ExamQuestionManager({
               {available.map((q) => (
                 <option key={q.id} value={q.id}>
                   [{q.type}] {q.text.slice(0, 70)}
-                  {q.text.length > 70 ? "…" : ""} — {q.topicName}
+                  {q.text.length > 70 ? "…" : ""} - {q.topicName}
                 </option>
               ))}
             </select>
@@ -1122,7 +1122,7 @@ function UsersTab() {
               <tr key={u.id}>
                 <td style={{ fontWeight: 600 }}>{u.name}</td>
                 <td className="muted">{u.email}</td>
-                <td>{u.profile ? `Grade ${u.profile.grade}` : "—"}</td>
+                <td>{u.profile ? `Grade ${u.profile.grade}` : "-"}</td>
                 <td>
                   <select
                     className="select"

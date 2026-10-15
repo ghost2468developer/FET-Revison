@@ -35,7 +35,7 @@ export default function ResultPage() {
   }
 
   const a = data.attempt;
-  const title = a.exam ? a.exam.title : a.topic ? `Practice — ${a.topic.name}` : "Session";
+  const title = a.exam ? a.exam.title : a.topic ? `Practice - ${a.topic.name}` : "Session";
   const subjectName = a.exam?.subject.name ?? a.topic?.subject.name;
   const pct = a.percentage ?? 0;
   const correctCount = a.answers.filter((x) => x.isCorrect).length;
@@ -52,7 +52,7 @@ export default function ResultPage() {
           </div>
           <div>
             <div style={{ fontSize: 20, fontWeight: 800, marginBottom: 6 }}>
-              {pct >= 70 ? "Strong result! 🎉" : pct >= 40 ? "Solid effort — keep pushing." : "This one's not done with you yet."}
+              {pct >= 70 ? "Strong result! 🎉" : pct >= 40 ? "Solid effort - keep pushing." : "This one's not done with you yet."}
             </div>
             <div className="result-facts">
               <div className="result-fact">

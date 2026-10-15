@@ -1,5 +1,5 @@
 /**
- * EXAMS — schema fragment
+ * EXAMS - schema fragment
  * Timed mock exams: sessions, auto-marking and results review.
  */
 export const schema: string = /* GraphQL */ `

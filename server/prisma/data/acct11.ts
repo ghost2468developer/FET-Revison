@@ -63,7 +63,7 @@ export const acct11: SubjectSeed = {
           difficulty: "EASY",
           points: 1,
           text: "True or false: a statement of financial position is prepared AT a point in time.",
-          explanation: "It is a 'snapshot' — 'as at 28 February 2025', not 'for the year ended…'.",
+          explanation: "It is a 'snapshot' - 'as at 28 February 2025', not 'for the year ended…'.",
           options: [
             { text: "True", correct: true },
             { text: "False" },
@@ -93,7 +93,7 @@ export const acct11: SubjectSeed = {
           type: "SUMMARY",
           title: "Key ideas",
           content:
-            "**Cost of sales** = opening inventory + purchases − closing inventory.\nClosing inventory is shown as a **current asset** on the statement of financial position.\nInventory is valued at the **lower of cost or net realisable value (NRV)** — NRV = selling price − costs to sell.\n**Perpetual** systems update inventory continuously; **periodic** systems count it at the end of the period.",
+            "**Cost of sales** = opening inventory + purchases − closing inventory.\nClosing inventory is shown as a **current asset** on the statement of financial position.\nInventory is valued at the **lower of cost or net realisable value (NRV)** - NRV = selling price − costs to sell.\n**Perpetual** systems update inventory continuously; **periodic** systems count it at the end of the period.",
         },
         {
           type: "FORMULA",
@@ -165,7 +165,7 @@ export const acct11: SubjectSeed = {
           type: "SUMMARY",
           title: "Key ideas",
           content:
-            "Depreciation allocates the cost of a non-current asset over its useful life.\n**Cost method** (straight-line): depreciation = cost × rate — the SAME amount every year.\n**Diminishing value method**: depreciation = book value × rate — the charge DECREASES every year.\nBook value (carrying amount) = cost − accumulated depreciation.",
+            "Depreciation allocates the cost of a non-current asset over its useful life.\n**Cost method** (straight-line): depreciation = cost × rate - the SAME amount every year.\n**Diminishing value method**: depreciation = book value × rate - the charge DECREASES every year.\nBook value (carrying amount) = cost − accumulated depreciation.",
         },
         {
           type: "FORMULA",

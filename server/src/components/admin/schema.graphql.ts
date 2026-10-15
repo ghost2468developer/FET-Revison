@@ -1,5 +1,5 @@
 /**
- * ADMIN — schema fragment
+ * ADMIN - schema fragment
  * Teacher/admin content management and user roles.
  */
 export const schema: string = /* GraphQL */ `

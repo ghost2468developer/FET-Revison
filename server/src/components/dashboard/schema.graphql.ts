@@ -1,5 +1,5 @@
 /**
- * DASHBOARD — schema fragment
+ * DASHBOARD - schema fragment
  * Progress analytics: weak/strong topics, accuracy, trends.
  */
 export const schema: string = /* GraphQL */ `

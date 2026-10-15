@@ -1,5 +1,5 @@
 /**
- * SUBJECTS — schema fragment
+ * SUBJECTS - schema fragment
  * Grade → Subject → Topic → StudyMaterial / Question browsing.
  */
 export const schema: string = /* GraphQL */ `

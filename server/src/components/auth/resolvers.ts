@@ -24,7 +24,7 @@ export const authResolvers = {
       if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) throw userError("Please enter a valid email address.");
       if (String(args.password).length < 6) throw userError("Password must be at least 6 characters long.");
       const existing = await prisma.user.findUnique({ where: { email } });
-      if (existing) throw userError("An account with this email already exists — try logging in instead.");
+      if (existing) throw userError("An account with this email already exists - try logging in instead.");
       const passwordHash = await bcrypt.hash(args.password, 10);
       const role = await roleForEmail(email);
       const user = await prisma.user.create({
